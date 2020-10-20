@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    {{ name }}
+    <br>
+    {{age}}
+    <hr>
+    <h3>{{ username }}</h3>
+<!--    返回的是user对象-->
+<!--    {{ user }}-->
+<!--    返回的是对象属性-->
+    {{users[0].name}}
+    {{users[1].name}}
+    {{users[2].name}}
+    <br>
+    {{user.name}}
+    <br>
+    {{user.age}}
+</div>
+<!--该div不在Vue作用范围内，显示的{{name}}字符串-->
+<div>
+    {{name}}
+</div>
+<script>
+    new Vue({
+        el:'#app',  //用来限定Vue作用域
+        data:{      //data用来定义变量
+            name:'王承乾', //传字符串
+            username:'焦雪健',
+            age:20, //传数字
+            user:{name:'薛钰林',age:18,object:'python'}, //传对象
+            users:[{name:'薛钰林',age:18,object:'python'},{name:'武林源',age:18,object:'python'},{name:'王琛玉',age:18,object:'python'}]  //传数组
+        },
+    })
+</script>
+</body>
+</html>

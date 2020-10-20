@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+<!--v-show用来控制页面中的某个标签是否展示-->
+<div id="app">
+    <h3 v-show="true">{{ name }}</h3>
+    <hr>
+<!--    改变v-show的flag来改变show的值-->
+    <h3 v-show="flag">{{ name }}</h3>
+    <input type="button" value="显示/隐藏" @click="show">
+    <hr>
+<!--    通过改变num的大小来改变show值-->
+    <h3 v-show="num>30">{{ name }}</h3>
+    <input type="button" value="加" @click="add">
+    <input type="button" value="减" @click="del">
+    <hr>
+<!--    v-if,v-else,v-else-if-->
+<!--    if else 要放在一起-->
+    <h4 v-if="flag">Vue的if判断</h4>
+<!--    else-if的值为true，无论如何也不走else分支了-->
+    <h4 v-else-if="true">Vue的elif判断</h4>
+    <h4 v-else>Vue的else判断</h4>
+    <input type="button" value="if/else" @click="show">
+<!--    v-bind修改绑定的属性内容-->
+    <hr>
+    <img v-bind:src="src" v-bind:title="title"> <input type="button" value="更换图片" @click="change_img">
+<!--    下面是简化写法-->
+    <img :src="src" :title="title"> <input type="button" value="更换图片" @click="change_img">
+</div>
+</body>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            name:'王承乾',
+            flag:'True',
+            num:20,
+            src:'https://t8.baidu.com/it/u=3571592872,3353494284&fm=79&app=86&size=h300&n=0&g=4n&f=jpeg?sec=1603797354&t=3992013f2ad076b600a182a0aa522ec9',
+            title:'美女图片',
+        },
+        methods:{
+            show(){
+                this.flag = !this.flag
+            },
+            add(){
+                this.num ++
+            },
+            del(){
+                this.num --
+            },
+            change_img(){
+                this.src='https://t7.baidu.com/it/u=3616242789,1098670747&fm=79&app=86&size=h300&n=0&g=4n&f=jpeg?sec=1603797354&t=6ba81884d368a8ff4a287a5f1a7cc202'
+            }
+        },
+    })
+</script>
+</html>

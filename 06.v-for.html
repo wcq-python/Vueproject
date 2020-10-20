@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+<!--    v-for遍历对象内容，按顺序输出value,key,index-->
+<!--    <span v-for="(value,key,index) in user" :key="index">{{index}}=={{key}}=={{value}}</span>-->
+    <div v-for="user in users">姓名：{{user.name}} 年龄：{{user.age}} 学科：{{user.object}}</div>
+    <ul>
+        <li v-for="(object,index) in arr">{{index+1}} : {{object}}</li>
+    </ul>
+</div>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            user:{name:'王成千',age:18,object:'python'},
+            users:[{name:'王承乾',age:18,object:'python'},{name:'焦雪健',age:18,object:'python'},{name:'薛钰林',age:18,object:'python'}],
+            arr:['python','java','C','C++','Vue'],
+        },
+        methods:{
+
+        },
+    })
+</script>
+</body>
+</html>

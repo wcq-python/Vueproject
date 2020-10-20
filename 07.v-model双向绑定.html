@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+<!--双向绑定实现标签中的元素值和Vue实例中的data数据保持一致-->
+<!--v-model只能应用于表单控件-->
+<div id="app">
+    <input type="text" @click="change">
+    <input type="text" v-model="msg">
+    <p>{{msg}}</p>
+</div>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            msg:'',
+        },
+        methods:{
+            change(){
+              this.msg='内容改变了'
+            },
+        },
+    })
+</script>
+</body>
+</html>

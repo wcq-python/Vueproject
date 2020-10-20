@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>留言板</title>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+<!--    将留言框双向绑定在msg中-->
+    <input type="text" v-model="msg">
+    <input @click="submit" type="button" value="提交留言">
+    <ul>
+        <li v-for="(message,index) in messages" :key="index">
+            {{ message }}
+            <a href="javascript:void(0);" @click="del(index)">删除评论</a>
+        </li>
+    </ul>
+    <p>当前评论数为：{{messages.length}}条</p>
+    <input v-show="flag" type="button" value="清空留言" @click="del_all">
+</div>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            messages:[],
+            msg:'',
+            flag:false,
+        },
+        methods:{
+            submit(){
+                if(this.msg){  //留言不能提交为空，否则无法提交
+                    this.flag=true
+                    this.messages.unshift(this.msg)
+                    this.msg=''
+                }
+            },
+            del(index){
+                console.log(index)
+                this.messages.splice(index,1) //splice中两个值为下标和删除的个数
+                if(this.messages.length===0){
+                    this.flag = false
+                }
+            },
+            del_all(){
+                this.messages = []
+                this.flag=false
+            },
+        },
+    })
+</script>
+</body>
+</html>

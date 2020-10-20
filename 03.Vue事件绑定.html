@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--通过事件绑定,例如事件触发(onclick,onblur等),来改变内容-->
+<div id="app">
+    年龄：{{ age }}
+<!--    标准方法使用 v-on:事件名="方法名"-->
+<!--    <input type="button" value="长大一岁" v-on:click="add_age">-->
+<!--    使用简便方法 @事件名=”方法名“ 来调用事件-->
+    <input type="button" value="长大一岁" @click="add_age">
+    <input type="button" value="年轻一岁" @click="del_age">
+</div>
+<script src="js/vue.min.js"></script>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            age:18
+        },
+        methods:{   //时间方法定义在methods中
+            add_age:function(){  //定义add_age标准方法
+                this.age ++  //this返回的是Vue实例
+                console.log(this)
+            },
+            del_age(){  //定义del_age标准方法
+                this.age --  //this返回的是Vue实例
+            },
+
+        },
+    })
+</script>
+</body>
+</html>

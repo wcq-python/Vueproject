@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>参数传递</title>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    年龄：{{ age }}
+    <input type="button" value="突然就变老了" @click="change_age">
+    <input type="button" value="变成小孩子了" @click="change_age2(6)">
+</div>
+<script>
+    // 测试时间调用传参
+    new Vue({
+        el:'#app',
+        data:{
+            name:'王承乾',
+            age:18,
+        },
+        methods:{
+            //直接赋值改变
+            change_age(){
+                this.age = 30
+                console.log()
+            },
+            //事件触发传值
+            change_age2(age){
+                this.age = age
+                console.log(this)
+                console.log(event)
+            }
+        },
+    })
+</script>
+</body>
+</html>
