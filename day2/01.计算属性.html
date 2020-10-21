@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+<!--    computed计算属性一般适用于，两者计算得到第三者-->
+<!--    计算器案例-->
+<!--    <input type="text" v-model="num1">-->
+<!--    <input type="text" v-model="num2">-->
+<!--    <input type="button" value="点我" @click="add">-->
+<!--    此处事件点击后才会触发，返回num3-->
+<!--    num3实现的是两数的相加-->
+<!--    <span>{{num3}}</span>-->
+<!--    下面实现十位个位的数字，显示完整数字-->
+    十位：<input type="number" v-model="msg1" max="9" min="0">
+    个位：<input type="number" v-model="msg2" max="9" min="0">
+<!--    下面span中实现的是将十位和个位计算操作-->
+    <span>{{msg1*10+ +msg2}}</span>
+    <hr>
+<!--    使用computed实现上述功能，无需事件触发，直接执行-->
+<!--    <span>{{result}}</span>-->
+    <span>{{result1}}</span>
+</div>
+<!--计算属性computed-->
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            num1:'',
+            num2:'',
+            num3:'',
+            msg1:'',
+            msg2:'',
+        },
+        methods:{  //methods中定义的是事件触发方法或函数
+            add(){
+                this.num3 = +this.num1 + +this.num2 //+号相当于类型转换，将字符串转化为int类型
+            },
+        },
+        computed:{ //computed中来声明计算方法属性
+            result(){
+                return +this.num1 + +this.num2
+            },
+            result1(){
+                return this.msg1*10+ +this.msg2
+            },
+        },
+    })
+</script>
+</body>
+</html>

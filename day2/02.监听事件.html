@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    请输入两位数：<input type="text" v-model="number">
+    <br>
+<!--    不能用地除，可以使用parseInt来实现地板除取值-->
+<!--    不使用监听事件-->
+<!--    十位：<p>{{ parseInt(number/10) }}</p>-->
+<!--    个位：<p>{{ number%10 }}</p>-->
+<!--    使用监听事件，使用情况：多个变量依赖于一个属性-->
+    十位：<p>{{shi}}</p>
+    个位：<p>{{ge}}</p>
+
+</div>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            number:'',
+            shi:'',
+            ge:'',
+        },
+        methods:{
+
+        },
+        watch:{
+            //监听函数number代表的是监听的是number变量
+            //监听函数无需返回值，直接改变数据值
+            number(){
+                this.shi = parseInt(this.number / 10)
+                this.ge = this.number % 10
+            },
+        },
+    })
+</script>
+</body>
+</html>

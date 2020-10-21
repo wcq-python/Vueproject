@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //一般函数的写法
+    function f(){
+        console.log(11111)
+    }
+    //匿名函数写法,声明函数可以使用let，也可以使用var
+    var f1 = function(){
+        console.log(2222)
+    }
+    //箭头函数写法，匿名函数的简写
+    var f3 = () => console.log(3333)
+    let f4 = () => {
+        console.log('函数体有两及以上个时必须用花括号')
+        console.log('函数体有两个时必须用花括号')
+    }
+</script>
+</body>
+</html>

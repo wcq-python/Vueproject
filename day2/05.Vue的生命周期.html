@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <h3 id="h3"  @click="add">{{ number }}</h3>
+</div>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            number:30,
+        },
+        methods:{
+            add(){
+                this.number --;
+            },
+        },
+        //Vue 的八个钩子
+        beforeCreate(){
+            console.log('创建前：'+this.number)
+        }, //创建前,在Vue创建前显示，此时number还未被定义，显示undefined
+        created(){
+            console.log('创建完成：'+this.number)
+        }, //成功创建，返回30
+        beforeMount(){
+            console.log('挂载前：'+document.getElementById('h3').innerText)
+        }, //挂载之前(数据还没有被渲染到页面)，返回{{number}}
+        mounted(){
+            console.log('挂载后：'+document.getElementById('h3').innerText)
+        }, //成功挂载(数据被成功渲染到了界面上),返回30
+        beforeUpdate(){
+            console.log('数据更新前：'+document.getElementById('h3').innerText)
+        }, //数据更新前,返回更新前的数据
+        updated(){
+            console.log('数据更新后：'+document.getElementById('h3').innerText)
+        }, //更新完成，返回更新后的值
+        beforeDestroy(){
+
+        }, //销毁前
+        destroyed(){}, //销毁完成
+    })
+</script>
+</body>
+</html>

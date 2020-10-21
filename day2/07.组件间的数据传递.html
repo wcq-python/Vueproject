@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+<!--    <input type="text" v-model="username">-->
+<!--    父传子，在子组件的标签上绑定一个属性：任意属性名=“父组件的变量”-->
+<!--    <com :text="username"></com>-->
+<!--    子传父-->
+    <com @change="sub_click"></com>
+    <p>{{username}}</p>
+</div>
+<script>
+    //自定义组件
+    let com = {
+  //       template:`
+  //         <p>{{text}}</p>
+  // `,
+        template:`
+          <div>
+        <input type="text" v-model="username">
+        <input type="button" @click="submit" value="子组件提交">
+        </div>`,
+        // 子组件触发提交事件
+        data:function (){
+            return {
+                username:'',
+            }
+        },
+        methods:{
+            submit(){
+                //向父组件触发一个自定义事件('触发事件名','传递数据')
+                this.$emit('change',this.username)
+            },
+        },
+    }
+    new Vue({
+        el:'#app',
+        data:{
+            username:'',
+        },
+        methods:{
+            sub_click(username){
+                this.username = username
+            },
+        },
+        components: {
+            com:com,
+        },
+    })
+</script>
+</body>
+</html>

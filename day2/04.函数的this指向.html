@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+<body>
+<script>
+    let f={
+        username : '王成千',
+        app:function(){
+            // 当前this指向的时当前的user实例,返回username
+            console.log(this.username)
+        }
+    }
+    f.app()
+    let f1={
+        username:'焦雪健',
+        app:function(){
+            setTimeout(function(){
+                // 在回调函数中this的指向会被改变，不在指向当前实例，返回undefined
+                console.log(this.username)
+            })
+        }
+    }
+    f1.app()
+    // 解决回调函数的方法是使用箭头函数
+    let f3={
+        username:'薛钰林',
+        app:function(){
+            setTimeout(()=>{
+                // 在回调函数中this的指向会被改变，不在指向当前实例，返回undefined
+                console.log(this.username)
+            })
+        }
+    }
+    f3.app()
+</script>
+</body>
+</html>

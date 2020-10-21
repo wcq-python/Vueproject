@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.min.js"></script>
+    <style>
+        .red{
+            color:red;
+        }
+        .green{
+            color:green;
+        }
+    </style>
+</head>
+<body>
+<!--组件：用来减少代码量，实现代码的复用-->
+<!--组件分为全局组件，局部组件-->
+<!--组件的使用分三部分：组件的定义，组件的注册，组件的渲染-->
+<!--全局组件,在任意Vue作用范围内都可以使用-->
+<div id="app">
+    {{username}}
+<!--    下面是全局组件-->
+<!--    <com css="red" username1="王意义"></com>-->
+<!--    下面是局部组件-->
+    <com1 css="green" username1="王二下"></com1>
+<!--    可以同时使用两个组件(将组件注册为局部和全局)-->
+</div>
+<script>
+    // 组件定义，组件的根标签不能有同级标签，否则只会显示一个，但可以有子标签
+    let com = {
+        //html页面
+        template:`
+            <div :class=css>这是一个组件{{username}}</div>>
+        `,
+        // 组件中data的使用,与Vue实例中的data用法不同，但使用方法相同
+        data: function(){
+            return{
+                username:'王城前',
+            }
+        },
+        //创建成功后调用
+        created(){
+            console.log(this.username)
+            console.log(this.username1)
+        },
+        mounted(){
+            console.log(this.username)
+        },
+        // props可以接受前端传过来的数据并传递给组件
+        props:['css','username1']
+    }
+    //全局组件的注册,两个选项('组件注册名称(随意)',定义组件对象)
+    Vue.component('com',com)
+    //局部组件的定义和使用与全局组件的一致，但注册方式不同
+    //局部组件注册在了Vue实例中了，所以Vue成为了根组件
+    new Vue({
+        el:'#app',
+        data:{
+            //组件中的data是相互隔离的，不影响彼此
+            username:'焦雪健',
+        },
+        methods:{
+
+        },
+        //局部组件使用只能在当前注册的Vue作用范围，而不能作用与其他范围
+        components:{
+            'com1':com,
+        },
+    })
+</script>
+</body>
+</html>
