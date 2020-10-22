@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<!--  导入vue.js  -->
+    <script src="../js/vue.min.js"></script>
+<!--  导入vue路由  -->
+    <script src="https://unpkg.com/vue-router@3.4.7/dist/vue-router.js"></script>
+</head>
+<body>
+<div id="app">
+    <h2>系统欢迎页</h2>
+    <router-link to="/index">首页</router-link>
+    <router-link to="/user">用户页</router-link>
+    <router-view></router-view>
+</div>
+<script>
+    let index={
+        template :`
+            <div>首页</div>
+        `,
+        }
+
+    let user={
+    template: `
+        <div>
+            <h3>用户页面</h3>
+            <table>
+            <tr>
+            <td>ID</td>
+            <td>姓名</td>
+            <td>生日</td>
+            <td>操作</td>
+            </tr>
+            <tr v-for="user in users">
+            <td>{{user.id}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.bir}}</td>
+            <td><a href="javascript:;">删除</a>|<a href="javascript:;">修改</a></td>
+            </tr>
+        </table>
+        </div>`,
+     data:function(){
+        return{
+            users:[
+                {'id':1,name:'王承乾',bir:'1997-09-06'},
+                {'id':2,name:'焦雪健',bir:'1999-07-06'},
+                {'id':3,name:'薛钰林',bir:'1999-06-06'},
+                ],
+        }
+     },
+    }
+
+    //路由定义
+    let myRouter=new VueRouter({
+        routes:[
+            {path:'/index',component:index},
+            {path:'/user',component:user},
+            {path:'/',redirect:'/index'},
+        ],
+    })
+
+    new Vue({
+        el:'#app',
+        data:{},
+        methods:{},
+        //注入路由
+        router:myRouter,
+    })
+</script>
+</body>
+</html>

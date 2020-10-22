@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.min.js"></script>
+    <script src="https://unpkg.com/vue-router@3.4.7/dist/vue-router.js"></script>
+</head>
+<body>
+<div id="app">
+    <router-link to="/index">首页</router-link>
+    <router-link to="/user">用户页</router-link>
+    <hr>
+    <router-view></router-view>
+</div>
+<script>
+    //url ？拼接传值通过($route.query.参数名)来接收
+    let index={
+        template:`
+            <div>当前页是首页
+            <router-link to="/user?id=1&name='王城前'">跳转用户页</router-link>
+            </div>
+        `,
+    }
+
+    let user={
+        template:`
+            <div>当前页为用户页
+            <span>显示主页传过来的数据：id:{{$route.query.id}};name:{{$route.query.name}}</span>
+            </div>
+        `,
+    }
+
+    let myRouter=new VueRouter({
+        routes:[
+            {path:'/index',component:index},
+            {path:'/user',component:user},
+            {path:'/',redirect:'/index'},
+        ],
+    })
+
+    new Vue({
+        el:'#app',
+        data:{},
+        methods:{},
+        router:myRouter
+    })
+</script>
+</body>
+</html>

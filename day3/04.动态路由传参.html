@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.min.js"></script>
+    <script src="https://unpkg.com/vue-router@3.4.7/dist/vue-router.js"></script>
+</head>
+<body>
+<div id="app">
+    <router-view></router-view>
+</div>
+<script>
+    //动态传值形式将数据写进url中而不拼接：例："/user/1/王承乾"
+    //动态数据值的接收，要改变路由格式，同时使用($route.params.参数名)来获取
+    //组件1
+    let index={
+        template:`
+        <div>首页
+        <router-link to="/user/1/王承乾">跳转至用户界面</router-link>
+        </div>
+        `,
+    }
+    //组件2
+    let user={
+        template:`
+            <div>这是用户页面
+            <span>接收传值：id:{{$route.params.id}};name:{{$route.params.name}}</span>
+            <router-link to="/index">返回首页</router-link>
+            <h3 @click="goBack">返回上一页</h3>
+            </div>
+        `,
+        methods:{
+            goBack(){
+                this.$router.go(-1)
+            }
+        },
+    }
+
+    //定义路由
+    let myRouter=new VueRouter({
+        routes:[
+            {path:'/index',component:index},
+            {path:'/user/:id/:name',component:user}, //改变path来接受动态传值
+            {path:'/',redirect:'/index'},
+        ]
+    })
+
+    new Vue({
+        el:'#app',
+        data:{},
+        methods:{},
+        //注入路由
+        router:myRouter
+    })
+</script>
+</body>
+</html>
